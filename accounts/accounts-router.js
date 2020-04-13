@@ -7,6 +7,8 @@ const router = express.Router();
 router.get("/", (req, res) => {
   db.select("*")
     .from("accounts")
+    .orderBy["budget", {column: "name", order: "desc"}]
+    .limit(5)
     .then(account => {
       res.status(200).json({ data: account });
     })
